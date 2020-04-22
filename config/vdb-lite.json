@@ -1,0 +1,6 @@
+{
+  "DATABASE_USER": "vdbcdk",
+  "DATABASE_PASSWORD": "password",
+  "DATABASE_NAME": "vdbcdk",
+  "CLIENT_IPCPATH": "https://node"
+}

@@ -1,0 +1,6 @@
+aws-cdk.aws-lambda
+aws-cdk.aws_events_targets
+aws-cdk.aws_ssm
+aws-cdk.aws_rds
+aws-cdk.aws_ecs_patterns
+boto3
