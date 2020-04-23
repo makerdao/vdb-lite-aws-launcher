@@ -46,7 +46,7 @@ class VdbExecuteEcsStack(core.Stack):
 
         execute_container = execute_task_definition.add_container(
             "execute",
-            image=ecs.ContainerImage.from_registry(name="makerdao/vdb-execute:staging"),
+            image=ecs.ContainerImage.from_registry(name=config['VDB_EXECUTE_IMAGE']),
             entry_point=[
                 "sh",
                 "-c"
@@ -90,7 +90,7 @@ class VdbHeaderSyncEcsStack(core.Stack):
 
         header_sync_container = header_sync_task_definition.add_container(
             "header-sync",
-            image=ecs.ContainerImage.from_registry(name="makerdao/vdb-headersync:staging"),
+            image=ecs.ContainerImage.from_registry(name=config['VDB_HEADER_SYNC_IMAGE']),
             entry_point=[
                 "sh",
                 "-c"
@@ -126,7 +126,7 @@ class VdbPostgraphileEcsStack(core.Stack):
         super().__init__(scope, id, **kwargs)
 
         postgraphile_task_image_options = ecs_patterns.ApplicationLoadBalancedTaskImageOptions(
-            image=ecs.ContainerImage.from_registry(name="makerdao/vdb-postgraphile:staging"),
+            image=ecs.ContainerImage.from_registry(name=config['VDB_POSTGRAPHILE_IMAGE']),
             container_name="vdb-postgraphile",
             container_port=5000,
             environment={

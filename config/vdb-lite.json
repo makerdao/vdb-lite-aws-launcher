@@ -2,5 +2,8 @@
   "DATABASE_USER": "vdbcdk",
   "DATABASE_PASSWORD": "password",
   "DATABASE_NAME": "vdbcdk",
-  "CLIENT_IPCPATH": "https://node"
+  "CLIENT_IPCPATH": "https://node",
+  "VDB_EXECUTE_IMAGE": "makerdao/vdb-execute:staging",
+  "VDB_HEADER_SYNC_IMAGE": "makerdao/vdb-headersync:staging",
+  "VDB_POSTGRAPHILE_IMAGE": "makerdao/vdb-postgraphile:staging"
 }
