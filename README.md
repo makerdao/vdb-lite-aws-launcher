@@ -16,7 +16,18 @@ Install AWS CDK running `npm install -g aws-cdk`.
 Clone repo and switch into its directory then run `./install.sh`
 
 ### Configuration
-Edit `config/vdb-lite.json` and specify desired values. `CLIENT_IPCPATH` is the RPC URL to a public geth node
+Edit `config/vdb-lite.json` and specify desired values.
+
+| Parameter | Description |
+| --- | --- |
+| `AWS_REGION` | AWS region to be used for deploying vdb lite |
+| `DATABASE_USER` | PostgreSQL database user |
+| `DATABASE_PASSWORD` | PostgreSQL database password |
+| `DATABASE_NAME` | vdb lite database name |
+| `CLIENT_IPCPATH` | RPC URL to be used by vdb lite (tested with geth light node) |
+| `VDB_EXECUTE_IMAGE` | Docker image used for vdb lite transformer execute service |
+| `VDB_HEADER_SYNC_IMAGE` | Docker image used for vdb lite header sync service |
+| `VDB_POSTGRAPHILE_IMAGE` | Docker image used for vdb lite postgraphile service |
 
 ### Deploy
 Use `./deploy.sh` script to deploy vdb-lite in AWS and accept deployment steps.  

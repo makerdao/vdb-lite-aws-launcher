@@ -29,10 +29,10 @@ class VdbLiteService(Construct):
 
         super().__init__(scope, id)
 
-        env_setup = {'region': 'us-east-1'}
-
         with open(f'config/vdb-lite.json', 'r') as file:
             config = json.load(file)
+
+        env_setup = {'region': config['AWS_REGION']}
 
         vpc_stack = VdbVpcStack(app, "VdbVpcStack", env=env_setup)
         rds_stack = VdbRdsStack(app, "VdbRdsStack", vpc_stack.vpc, vpc_stack.vdb_security_group,
