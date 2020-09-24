@@ -19,6 +19,7 @@ set -e
 virtualenv .env
 source .env/bin/activate
 cdk destroy VdbPostgraphileEcsStack
+cdk destroy VdbExtractDiffsEcsStack
 cdk destroy VdbHeaderSyncEcsStack
 cdk destroy VdbExecuteEcsStack
 cdk destroy VdbRdsStack

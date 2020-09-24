@@ -122,6 +122,50 @@ class VdbHeaderSyncEcsStack(core.Stack):
         )
 
 
+class VdbExtractDiffsEcsStack(core.Stack):
+
+    def __init__(self, scope: core.Construct, id: str, cluster: ecs.Cluster, security_group: ec2.SecurityGroup,
+                 rds: rds.DatabaseInstance, config: dict, **kwargs) -> None:
+        super().__init__(scope, id, **kwargs)
+
+        extract_diffs_task_definition = ecs.FargateTaskDefinition(
+            self,
+            "ExtractDiffsTaskDef",
+            cpu=1024,
+            memory_limit_mib=2048
+        )
+
+        extract_diffs_container = extract_diffs_task_definition.add_container(
+            "extract-diffs",
+            image=ecs.ContainerImage.from_registry(name=config['VDB_EXTRACT_DIFFS_IMAGE']),
+            entry_point=[
+                "sh",
+                "-c"
+            ],
+            command=[
+                "./startup_script.sh"
+            ],
+            logging=ecs.LogDrivers.aws_logs(stream_prefix="VdbExtractDiffsLogs"),
+            environment={
+                "DATABASE_USER": config['DATABASE_USER'],
+                "DATABASE_PASSWORD": config['DATABASE_PASSWORD'],
+                "DATABASE_NAME": config['DATABASE_NAME'],
+                "DATABASE_PORT": rds.db_instance_endpoint_port,
+                "DATABASE_HOSTNAME": rds.db_instance_endpoint_address,
+                "CLIENT_IPCPATH": config['CLIENT_IPCPATH'],
+                "STORAGEDIFFS_SOURCE": "geth"
+            }
+        )
+
+        ecs.FargateService(
+            self, "VdbHExtractDiffsService",
+            cluster=cluster,
+            task_definition=extract_diffs_task_definition,
+            service_name="VdbExtractDiffsService",
+            security_group=security_group
+        )
+
+
 class VdbPostgraphileEcsStack(core.Stack):
 
     def __init__(self, scope: core.Construct, id: str, cluster: ecs.Cluster, rds: rds.DatabaseInstance,

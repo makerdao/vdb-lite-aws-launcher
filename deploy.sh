@@ -22,4 +22,5 @@ cdk deploy VdbVpcStack
 cdk deploy VdbRdsStack
 cdk deploy VdbExecuteEcsStack
 cdk deploy VdbHeaderSyncEcsStack
+cdk deploy VdbExtractDiffsEcsStack
 cdk deploy VdbPostgraphileEcsStack

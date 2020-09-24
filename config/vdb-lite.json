@@ -6,5 +6,6 @@
   "CLIENT_IPCPATH": "https://node",
   "VDB_EXECUTE_IMAGE": "makerdao/vdb-execute:staging",
   "VDB_HEADER_SYNC_IMAGE": "makerdao/vdb-headersync:staging",
+  "VDB_EXTRACT_DIFFS_IMAGE": "makerdao/vdb-extract-diffs:staging",
   "VDB_POSTGRAPHILE_IMAGE": "makerdao/vdb-postgraphile:staging"
 }
