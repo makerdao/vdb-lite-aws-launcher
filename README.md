@@ -27,6 +27,7 @@ Edit `config/vdb-lite.json` and specify desired values.
 | `CLIENT_IPCPATH` | RPC URL to be used by vdb lite (tested with geth light node) |
 | `VDB_EXECUTE_IMAGE` | Docker image used for vdb lite transformer execute service |
 | `VDB_HEADER_SYNC_IMAGE` | Docker image used for vdb lite header sync service |
+| `VDB_EXTRACT_DIFFS_IMAGE` | Docker image used for vdb extract diffs service * |
 | `VDB_POSTGRAPHILE_IMAGE` | Docker image used for vdb lite postgraphile service |
 
 ### Deploy
@@ -54,3 +55,8 @@ curl -s \
 --compressed \
 'http://VdbPo-VdbPo-170291ZOJZ9Y7-1863118136.eu-west-2.elb.amazonaws.com/graphql' |jq
 ```
+
+### full VDB vs vdb-lite
+
+- VDB lite is a slimmed down version of VulcanizeDB and needs just a regular JSON-RPC endpoint to work (e.g. parity, infura, etc.)
+- The full version of VulcanizeDB includes storage diffs processing and requires a patched geth node. See https://github.com/makerdao/go-ethereum
