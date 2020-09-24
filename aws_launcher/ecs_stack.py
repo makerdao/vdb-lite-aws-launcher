@@ -121,6 +121,7 @@ class VdbHeaderSyncEcsStack(core.Stack):
             security_group=security_group
         )
 
+
 class VdbExtractDiffsEcsStack(core.Stack):
 
     def __init__(self, scope: core.Construct, id: str, cluster: ecs.Cluster, security_group: ec2.SecurityGroup,
@@ -163,6 +164,7 @@ class VdbExtractDiffsEcsStack(core.Stack):
             service_name="VdbExtractDiffsService",
             security_group=security_group
         )
+
 
 class VdbPostgraphileEcsStack(core.Stack):
 

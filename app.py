@@ -19,7 +19,7 @@ import json
 from aws_cdk.core import Construct, App
 
 from aws_launcher.rds_stack import VdbRdsStack
-from aws_launcher.ecs_stack import VdbExecuteEcsStack, VdbHeaderSyncEcsStack, VdbPostgraphileEcsStack
+from aws_launcher.ecs_stack import VdbExecuteEcsStack, VdbExtractDiffsEcsStack, VdbHeaderSyncEcsStack, VdbPostgraphileEcsStack
 from aws_launcher.vpc_stack import VdbVpcStack
 
 
@@ -50,11 +50,11 @@ class VdbLiteService(Construct):
                                                      config=config,
                                                      env=env_setup)
         extract_diffs_stack = VdbExtractDiffsEcsStack(app, "VdbExtractDiffsEcsStack",
-                                                     cluster=execute_rds_stack.cluster,
-                                                     security_group=vpc_stack.vdb_security_group,
-                                                     rds=rds_stack.vdb_rds,
-                                                     config=config,
-                                                     env=env_setup)
+                                                      cluster=execute_rds_stack.cluster,
+                                                      security_group=vpc_stack.vdb_security_group,
+                                                      rds=rds_stack.vdb_rds,
+                                                      config=config,
+                                                      env=env_setup)
         postgraphile_stack = VdbPostgraphileEcsStack(app, "VdbPostgraphileEcsStack",
                                                      cluster=execute_rds_stack.cluster,
                                                      rds=rds_stack.vdb_rds,
