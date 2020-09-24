@@ -58,5 +58,5 @@ curl -s \
 
 ### full VDB vs vdb-lite
 
-- VDB lite is a slimmed down version of VulcanizeDB and needs just a regular JSON-RPC endpoint to work (e.g. parity, infura, etc.)
-- The full version of VulcanizeDB includes storage diffs processing and requires a patched geth node. See https://github.com/makerdao/go-ethereum
+- VDB lite is a slimmed down version of VulcanizeDB and needs just a regular JSON-RPC endpoint to work (e.g. parity, infura, etc.). It exposes events from the MakerDAO smart contracts
+- The full version of VulcanizeDB includes storage diffs processing and requires a patched geth node. See https://github.com/makerdao/go-ethereum. It exposes events + storage slots + tables aggregating data structures that are distributed across several contracts (e.g. urns)
