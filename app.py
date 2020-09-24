@@ -49,6 +49,12 @@ class VdbLiteService(Construct):
                                                      rds=rds_stack.vdb_rds,
                                                      config=config,
                                                      env=env_setup)
+        extract_diffs_stack = VdbExtractDiffsEcsStack(app, "VdbExtractDiffsEcsStack",
+                                                     cluster=execute_rds_stack.cluster,
+                                                     security_group=vpc_stack.vdb_security_group,
+                                                     rds=rds_stack.vdb_rds,
+                                                     config=config,
+                                                     env=env_setup)
         postgraphile_stack = VdbPostgraphileEcsStack(app, "VdbPostgraphileEcsStack",
                                                      cluster=execute_rds_stack.cluster,
                                                      rds=rds_stack.vdb_rds,
@@ -60,4 +66,3 @@ app = App()
 VdbLiteService(app, "vdb")
 
 app.synth()
-
